@@ -20,7 +20,7 @@ Hands-on DJI Tello lab using Python and DJITelloPy in Antigravity IDE on macOS, 
 | Host | macOS, Antigravity IDE, Python 3.12.3, DJITelloPy |
 | Capture VM | Ubuntu, MediaTek USB Wi-Fi adapter, Wireshark |
 | Monitor interface | wlx00c0cab7b17b |
-| Evidence | 16 screenshots, grouped into 6 parent tasks |
+| Evidence | 16 screenshots grouped into Tasks 1–6; four PCAPNG capture experiments documented as Tasks 7–10 |
 
 ## Assessment Workflow
 
@@ -91,6 +91,43 @@ Filtered beacon frames and the drone BSSID; observed repeated Tello beacon and p
 
 ![Screenshot 6.3: Wireshark traffic analysis](assets/evidence/task-6-3.webp)
 
+## Wireshark Capture Experiments — Tasks 7–10
+
+The following four PCAPNG files were supplied after the screenshots. They are kept as **four additional parent tasks**, numbered sequentially after Task 6. These are original Wireshark capture recordings, rather than screenshots. The files have been inspected as PCAPNG with 802.11 radio metadata; their names identify the intended experiment, but a capture alone does not establish successful creation of an image or video.
+
+| Task | Experiment | Original capture file | Captured packets | Approx. file size |
+|---|---|---|---:|---:|
+| 7 | Experiment 1 — Simple | `Experiment1_Simple.pcapng` | 19,306 | 1.98 MB |
+| 8 | Experiment 2 — Take Control | `Experiment2_TakeControl.pcapng` | 3,711 | 0.41 MB |
+| 9 | Experiment 3 — Take Picture | `Experiment3_TakePicture.pcapng` | 280,341 | 83.27 MB |
+| 10 | Experiment 4 — Take Video | `Experiment4_TakeVideo.pcapng` | 893 | 0.10 MB |
+
+### Task 7 — Experiment 1: Simple Drone Control Capture
+
+**Source file:** `Experiment1_Simple.pcapng`
+
+Wireshark captured **19,306 packets** during the experiment labeled Simple. The PCAPNG includes IEEE 802.11 beacon, probe-request, probe-response, control, and data frames. This capture corresponds to the Python `simple.py` control sequence documented in Task 5. The screenshot there records acknowledged drone SDK commands.
+
+### Task 8 — Experiment 2: Manual / Take Control Capture
+
+**Source file:** `Experiment2_TakeControl.pcapng`
+
+The second experiment contains **3,711 captured packets**. It includes management, control, and data traffic consistent with a wireless capture session. Its supplied name indicates the Take Control/manual-control experiment, but the capture data alone does not prove a particular joystick or control interaction.
+
+### Task 9 — Experiment 3: Take Picture Capture
+
+**Source file:** `Experiment3_TakePicture.pcapng`
+
+The third capture contains **280,341 packets** and is the largest of the four at approximately **83.27 MB**. It contains substantial IEEE 802.11 data traffic and includes frames associated with the Tello BSSID `34:d2:62:93:fa:07`. Its large packet volume is consistent with sustained wireless activity, but it does **not** independently verify that a picture file was created or identify a successfully saved image.
+
+### Task 10 — Experiment 4: Take Video Capture
+
+**Source file:** `Experiment4_TakeVideo.pcapng`
+
+The fourth capture contains **893 packets**. The recorded frames include beacon, probe, control, and a small quantity of data traffic. The experiment is labeled Take Video, but this capture does **not** independently establish a decoded video recording or saved video output.
+
+**Capture availability:** These four original PCAPNG files were uploaded to the conversation and inspected for this documentation update. The capture binaries are **not yet hosted in this repository**, so the filenames above are descriptive rather than broken download links. The existing screenshots and original assignment are unchanged.
+
 ## Findings and Evidence
 
 | Finding | Evidence | Interpretation |
@@ -101,6 +138,7 @@ Filtered beacon frames and the drone BSSID; observed repeated Tello beacon and p
 | Drone Wi-Fi discovered | Task 4 | SSID, BSSID, gateway, and channel verified |
 | Control commands acknowledged | Task 5 | SDK returned success for listed movements and landing |
 | Drone management frames visible | Task 6 | Beacon and probe-response activity matched the drone BSSID |
+| Simple, Take Control, Take Picture, Take Video captures | Tasks 7–10 | Four valid 802.11 PCAPNG datasets inspected |
 
 ## What This Project Demonstrates
 
@@ -112,6 +150,6 @@ Filtered beacon frames and the drone BSSID; observed repeated Tello beacon and p
 
 ## Scope and Limitations
 
-The lab instructions also request manual control, taking a photo, and recording video, with individual Wireshark captures. Those program runs and saved outputs are not established by the 16 uploaded screenshots, so they are not claimed as completed. The screenshots verify a Tello command sequence and management-frame capture, not recovered photo or video contents. No original .pcapng file or project-specific executable source was uploaded.
+The lab instructions also request manual control, taking a photo, and recording video, with individual Wireshark captures. Those program runs and saved outputs are not established by the 16 uploaded screenshots, so they are not claimed as completed. The screenshots verify a Tello command sequence and management-frame capture, not recovered photo or video contents. Four original PCAPNG files were subsequently provided and their packet counts were inspected; their binaries are not yet hosted here. No project-specific executable source was uploaded.
 
 *All 16 evidence screenshots and the original exercise document are preserved in this repository.*
